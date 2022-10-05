@@ -1,10 +1,10 @@
-package main
+package blockchain
 
 import (
 	sha256 "crypto/sha256"
 	"fmt"
-	"math/rand"
 	"strconv"
+	a1 "github.com/fa1ez/blockchain" 
 )
 
 type block struct {
@@ -81,30 +81,28 @@ func VerifyChain(blockchain Blockchain) {
 
 }
 
-func main() {
-	option := -1
-	var blockchain Blockchain
-	hash := ""
-	for option != 0 {
-		fmt.Println("1. Add new block")
-		fmt.Println("2. Display")
-		fmt.Println("3. Change block")
-		fmt.Println("4. Verify")
-		fmt.Println("0. Exit")
-		fmt.Scan(&option)
+// func main() {
+// 	var blockchain Blockchain
+// 	hash := ""
+// 	option := -1
+// 	for option != 0 {
+// 		fmt.Println("1. Add new block")
+// 		fmt.Println("2. Display")
+// 		fmt.Println("3. Change block")
+// 		fmt.Println("4. Verify")
+// 		fmt.Println("0. Exit")
+// 		fmt.Scan(&option)
+// 		if option == 1 {
+// 			block := NewBlock("Bob to Alice", rand.Intn(1000), hash)
+// 			hash = block.C_Hash
+// 			blockchain.block_chain = append(blockchain.block_chain, *block)
+// 		} else if option == 2 {
+// 			Display_blocks(blockchain)
+// 		} else if option == 3 {
+// 			ChangeBlock(blockchain)
+// 		} else if option == 4 {
+// 			VerifyChain(blockchain)
+// 		}
+// 	}
 
-		if option == 1 {
-
-			block := NewBlock("Bob to Alice", rand.Intn(1000), hash)
-			hash = block.C_Hash
-			blockchain.block_chain = append(blockchain.block_chain, *block)
-		} else if option == 2 {
-			Display_blocks(blockchain)
-		} else if option == 3 {
-			ChangeBlock(blockchain)
-		} else if option == 4 {
-			VerifyChain(blockchain)
-		}
-	}
-
-}
+// }
