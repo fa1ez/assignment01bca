@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-var blockchain []block
+
 
 type block struct {
 	nonce  int
@@ -14,6 +14,8 @@ type block struct {
 	P_Hash string //hash of previous block
 	C_Hash string //hash of current block
 }
+
+var blockchain []block
 
 func concat(a int, b string, c string) string {
 	var aa string
