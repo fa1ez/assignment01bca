@@ -1,4 +1,4 @@
-package blockchain
+package assignment1bca
 
 import (
 	sha256 "crypto/sha256"
