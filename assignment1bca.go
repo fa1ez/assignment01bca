@@ -6,14 +6,12 @@ import (
 	"strconv"
 )
 
-type block struct {
-	nonce  int
-	data   string //transactions
+type Block struct {
+	Nonce  int
+	Data   string //transactions
 	P_Hash string //hash of previous block
 	C_Hash string //hash of current block
 }
-
-
 
 func concat(a int, b string, c string) string {
 	var aa string
@@ -22,9 +20,9 @@ func concat(a int, b string, c string) string {
 	return aa
 }
 
-func NewBlock(transaction string, nonce int, previousHash string) (bloc *block) {
-	new_block := block{nonce: nonce, data: transaction, P_Hash: previousHash}
-	hash := CalculateHash(concat(nonce, previousHash, transaction))
+func NewBlock(transaction string, Nonce int, previousHash string) (bloc *Block) {
+	new_block := Block{Nonce: Nonce, Data: transaction, P_Hash: previousHash}
+	hash := CalculateHash(concat(Nonce, previousHash, transaction))
 	new_block.C_Hash = hash
 	bloc = &new_block
 	return bloc
@@ -36,15 +34,15 @@ func CalculateHash(stringToHash string) (output string) {
 	return output
 }
 
-func Display_blocks(blockchain []block) {
+func Display_blocks(blockchain []Block) {
 	for i := 0; i < len(blockchain); i++ {
-		fmt.Printf("\n\nBlock: %d\nNonce: %d\nData: %v\nPrevious Hash: %v\nCurrent Hash: %v", i, blockchain[i].nonce, blockchain[i].data, blockchain[i].P_Hash, blockchain[i].C_Hash)
+		fmt.Printf("\n\nBlock: %d\nNonce: %d\nData: %v\nPrevious Hash: %v\nCurrent Hash: %v", i, blockchain[i].Nonce, blockchain[i].Data, blockchain[i].P_Hash, blockchain[i].C_Hash)
 		fmt.Println()
 	}
 }
 
 // Change block
-func ChangeBlock(blockchain []block) {
+func ChangeBlock(blockchain []Block) {
 	var num int
 	fmt.Println("Enter number of the block(0,1,2...)")
 	fmt.Scan(&num)
@@ -55,14 +53,14 @@ func ChangeBlock(blockchain []block) {
 	var transaction string
 	fmt.Println("Enter new Transaction(No spaces)")
 	fmt.Scan(&transaction)
-	blockchain[num].data = transaction
-	make_hash := concat(blockchain[num].nonce, blockchain[num].P_Hash, transaction)
+	blockchain[num].Data = transaction
+	make_hash := concat(blockchain[num].Nonce, blockchain[num].P_Hash, transaction)
 	hash := CalculateHash(make_hash)
 	blockchain[num].C_Hash = hash
 }
 
 // verification
-func VerifyChain(blockchain []block) {
+func VerifyChain(blockchain []Block) {
 	if len(blockchain) == 0 {
 		fmt.Println("Blockchain empty")
 	} else {
