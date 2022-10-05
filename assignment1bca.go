@@ -6,8 +6,6 @@ import (
 	"strconv"
 )
 
-
-
 type block struct {
 	nonce  int
 	data   string //transactions
@@ -15,7 +13,7 @@ type block struct {
 	C_Hash string //hash of current block
 }
 
-var blockchain []block
+
 
 func concat(a int, b string, c string) string {
 	var aa string
@@ -38,7 +36,7 @@ func CalculateHash(stringToHash string) (output string) {
 	return output
 }
 
-func Display_blocks() {
+func Display_blocks(blockchain []block) {
 	for i := 0; i < len(blockchain); i++ {
 		fmt.Printf("\n\nBlock: %d\nNonce: %d\nData: %v\nPrevious Hash: %v\nCurrent Hash: %v", i, blockchain[i].nonce, blockchain[i].data, blockchain[i].P_Hash, blockchain[i].C_Hash)
 		fmt.Println()
@@ -46,7 +44,7 @@ func Display_blocks() {
 }
 
 // Change block
-func ChangeBlock() {
+func ChangeBlock(blockchain []block) {
 	var num int
 	fmt.Println("Enter number of the block(0,1,2...)")
 	fmt.Scan(&num)
@@ -64,7 +62,7 @@ func ChangeBlock() {
 }
 
 // verification
-func VerifyChain() {
+func VerifyChain(blockchain []block) {
 	if len(blockchain) == 0 {
 		fmt.Println("Blockchain empty")
 	} else {
