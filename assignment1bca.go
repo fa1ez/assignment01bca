@@ -9,8 +9,8 @@ import (
 type Block struct {
 	Nonce  int
 	Data   string //transactions
-	P_Hash string //hash of previous block
-	C_Hash string //hash of current block
+	P_hash string //hash of previous block
+	C_hash string //hash of current block
 }
 
 func concat(a int, b string, c string) string {
@@ -21,9 +21,9 @@ func concat(a int, b string, c string) string {
 }
 
 func NewBlock(transaction string, Nonce int, previousHash string) (bloc *Block) {
-	new_block := Block{Nonce: Nonce, Data: transaction, P_Hash: previousHash}
+	new_block := Block{Nonce: Nonce, Data: transaction, P_hash: previousHash}
 	hash := CalculateHash(concat(Nonce, previousHash, transaction))
-	new_block.C_Hash = hash
+	new_block.C_hash = hash
 	bloc = &new_block
 	return bloc
 }
@@ -36,7 +36,7 @@ func CalculateHash(stringToHash string) (output string) {
 
 func Display_blocks(blockchain []Block) {
 	for i := 0; i < len(blockchain); i++ {
-		fmt.Printf("\n\nBlock: %d\nNonce: %d\nData: %v\nPrevious Hash: %v\nCurrent Hash: %v", i, blockchain[i].Nonce, blockchain[i].Data, blockchain[i].P_Hash, blockchain[i].C_Hash)
+		fmt.Printf("\n\nBlock: %d\nNonce: %d\nData: %v\nPrevious Hash: %v\nCurrent Hash: %v", i, blockchain[i].Nonce, blockchain[i].Data, blockchain[i].P_hash, blockchain[i].C_hash)
 		fmt.Println()
 	}
 }
@@ -54,9 +54,9 @@ func ChangeBlock(blockchain []Block) {
 	fmt.Println("Enter new Transaction(No spaces)")
 	fmt.Scan(&transaction)
 	blockchain[num].Data = transaction
-	make_hash := concat(blockchain[num].Nonce, blockchain[num].P_Hash, transaction)
+	make_hash := concat(blockchain[num].Nonce, blockchain[num].P_hash, transaction)
 	hash := CalculateHash(make_hash)
-	blockchain[num].C_Hash = hash
+	blockchain[num].C_hash = hash
 }
 
 // verification
@@ -65,7 +65,7 @@ func VerifyChain(blockchain []Block) {
 		fmt.Println("Blockchain empty")
 	} else {
 		for i := 0; i < (len(blockchain) - 1); i++ {
-			if blockchain[i].C_Hash != blockchain[i+1].P_Hash {
+			if blockchain[i].C_hash != blockchain[i+1].P_hash {
 				fmt.Printf("Block %d changed", i)
 				fmt.Println()
 				return
