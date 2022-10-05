@@ -4,7 +4,6 @@ import (
 	sha256 "crypto/sha256"
 	"fmt"
 	"strconv"
-	a1 "github.com/fa1ez/blockchain" 
 )
 
 type block struct {
